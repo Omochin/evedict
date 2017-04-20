@@ -1,0 +1,21 @@
+{% if 'image' in kwargs %}
+<img src="{{ kwargs['image'] }}" class="img-responsive center-block">
+{% end %}
+
+{% if 'locale_name' in kwargs %}
+<h2>{% raw kwargs['link_to'](kwargs['locale_name'], kwargs['parent']['link']) %}</h2>
+<p class="lead">{% raw kwargs['locale_description'] %}</p>
+<hr />
+{% end %}
+
+<h2>{% raw kwargs['link_to'](kwargs['name'], kwargs['parent']['link']) %}</h2>
+<p class="lead">{% raw kwargs['description'] %}</p>
+<hr />
+
+{% if 'uniwiki' in kwargs %}
+<h3>
+    <a href="https://wiki.eveuniversity.org/{{ kwargs['uniwiki'] }}">
+    {{ kwargs['uniwiki']}} - UniWiki
+    </a>
+</h3>
+{% end %}

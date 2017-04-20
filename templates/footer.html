@@ -1,0 +1,6 @@
+{% raw '<hr /><h4>%s</h4>' % kwargs['id_text'] if 'id_text' in kwargs else '' %}
+
+{% if 'parent' in kwargs %}
+<hr />
+{% raw kwargs['link_to']('<< %s' % kwargs['parent']['text'], kwargs['parent']['link']) %}
+{% end %}

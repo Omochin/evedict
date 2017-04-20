@@ -1,0 +1,146 @@
+﻿<!--
+Copyright 2013-2016 Blackrock Digital LLC. Code released under the [MIT](https://github.com/BlackrockDigital/startbootstrap-bare/blob/gh-pages/LICENSE) license.
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="icon" href="{{ static_url('images/favicon.ico') }}">
+    
+    <title>{{ kwargs['title'] + ' - Evedict' if 'title' in kwargs else 'Evedict' }}</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ static_url('css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+    body {
+        padding-top: 70px;
+        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    }
+    </style>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="{{ static_url('js/html5shiv3.7.0.js') }}"></script>
+        <script src="{{ static_url('js/respond1.4.2.min.js') }}"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                {% raw kwargs['link_to']('Evedict', '/home', class_='navbar-brand') %}
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>{% raw kwargs['link_to']('QR Code', '/', align_language=False) %}</li>
+                    <li>{% raw kwargs['link_to']('Preferences', '/preferences') %}</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <form class="navbar-form" role="search" action="#">
+                            <div class="form-group">
+                                <input type="hidden" id="search-lcid" value="{{ kwargs['lcid'] }}" />
+                                <input type="text" id="search-query" class="form-control" placeholder="Search" value="{{ kwargs['search_word'] if 'search_word' in kwargs else '' }}">
+                            </div>
+                        </form>
+                    </li>
+                    <li class="dropdown">
+                        <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown" style="text-decoration: none; outline:none;">
+                        <img src="{{ static_url("images/icons/%s-32.png" % kwargs['default_lcid']) }}">
+                        {% if kwargs['lcid'] != kwargs['default_lcid'] %}
+                        <img src="{{ static_url("images/icons/%s-32.png" % kwargs['lcid']) }}">
+                        {% end %}
+                        <span class="caret"></span>
+                        </button>
+
+                        <ul class="dropdown-menu" role="menu">							
+                            {% for lcid, name in kwargs['locales'].items() %}
+                            {% if not kwargs['lcid'] == lcid %}
+                            <li>
+                            {% 
+                                raw kwargs['link_to'](
+                                    name, 
+                                    '/%s/%s' % (lcid, kwargs['path']), 
+                                    icon=static_url('images/icons/%s-16.png' % lcid), 
+                                    align_language=False
+                                )
+                            %}
+                            </li>
+                            {% end %}
+                            {% end %}
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1 id="message">{{ kwargs['message'] if 'message' in kwargs else '' }}</h1>
+
+                <div id="content">
+                    {% if 'template' in kwargs %}
+                    {% module Template(kwargs['template'], kwargs=kwargs) %}
+                    {% end %}
+
+                    {% if 'content' in kwargs %}
+                    {% raw kwargs['content'] %}
+                    {% end %}
+                </div>
+
+                <div id="footer">
+                    {% if 'footer' in kwargs %}
+                    {% raw kwargs['footer'] %}
+                    {% else %}
+                    {% module Template('footer.html', kwargs=kwargs) %}
+                    {% end %}
+                </div>
+
+                <hr />
+                <ul class="list-unstyled">
+                    <li>© 2017 Omochin</li>
+                    <li><a href="https://github.com/twbs/bootstrap">Bootstrap</a> by <a href="https://twitter.com/omochin4eve">Omochin</a> | Powered by <a href="https://github.com/tornadoweb/tornado">Tornado</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->	
+
+    <!-- jQuery -->
+    <script src="{{ static_url('js/jquery3.1.0.min.js') }}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{{ static_url('js/bootstrap.min.js') }}"></script>
+    <script src="{{ static_url('js/evedict.js') }}"></script>
+</body>
+
+</html>

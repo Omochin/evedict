@@ -1,0 +1,19 @@
+<h3>
+    {% if 'parent' in kwargs %}
+    {% raw kwargs['link_to'](kwargs['name'], kwargs['parent']['link']) %}
+    {% else %}
+    {{ kwargs['name'] }}
+    {% end %}
+</h3>
+
+<table class="table table-striped">	
+    {% for item in kwargs['items'] %}
+    <tr>
+        <td style="width: 50%">{% raw kwargs['link_to'](item['name'], item['link']) %}</td>
+
+        {% if 'locale' in item %}
+        <td style="width: 50%">{% raw kwargs['link_to'](item['locale'], item['link']) %}</td>
+        {% end %}
+    </tr>
+    {% end %}
+</table>

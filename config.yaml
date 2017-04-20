@@ -1,0 +1,8 @@
+default_lcid: en
+host_port: 8888
+launch_web_browser: true
+lcid: ru
+link_clipboard: true
+paste_result: true
+search_limit: 300
+uri_len_limit: 100

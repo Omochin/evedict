@@ -1,0 +1,33 @@
+
+<form action="/{{ kwargs['lcid'] }}/preferences" method="POST">
+    <h3>Preferences</h3>
+    <table class="table table-striped">
+        {% for option in kwargs['options'] %}
+        <tr>
+            <td class="text-right" style="width: 55%">
+                <label for="{{ option['name'] }}" style="font-weight:normal;">{{ option['text'] }}</label>
+            </td>
+            <td class="text-left" style="width: 45%">
+                <input class="form-check-input" type="checkbox" name="{{ option['name'] }}" id="{{ option['name'] }}" {{ 'checked' if option['checked'] else '' }}>
+            </td>
+        </tr>
+        {% end %}
+
+        <tr>
+            <td class="text-right" style="width: 55%">
+                <label style="font-weight:normal;">Default Language</label>
+            </td>
+            <td class="text-left" style="width: 45%">
+                <select name="default_lcid" id="default_lcid">
+                    {% for lcid, name in kwargs['locales'].items() %}
+                    <option {{ 'selected' if lcid == kwargs['default_lcid'] else '' }} value="{{ lcid }}">{{ name }}</option>
+                    {% end %}
+                </select>
+            </td>
+        </tr>
+
+    </table>
+    <input type="submit" class="btn btn-info" value="Save changes">
+    
+</form>
+

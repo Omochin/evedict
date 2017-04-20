@@ -1,0 +1,10 @@
+__pycache__/
+build/
+dist/
+.vscode/
+.pylintrc
+
+scripts/sde/
+scripts/locales/
+scripts/images/
+static/images/qr_code.png
