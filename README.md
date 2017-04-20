@@ -1,5 +1,6 @@
 # evedict
 ![evedict](https://cloud.githubusercontent.com/assets/20231880/25220335/6965a1ee-25ec-11e7-9947-dc7ee223439b.jpg)
+English subtitle video is [here](https://www.youtube.com/watch?v=dH4wnYJ10Sw).
 
 ## What is it?
 Multilingual dictionary for EVE Online. This dictionary is synchronized with the HTML5 browser in the network.
@@ -9,6 +10,7 @@ evedict is licensed under the MIT, see LICENSE
 
 ## Resources
 * Development repository: [https://github.com/Omochin/evedict](https://github.com/Omochin/evedict)
+* [EVE forum thread](https://forums.eveonline.com/default.aspx?g=posts&t=517479)
 * [EVE Online website](http://www.eveonline.com/)
 
 ## Contacts
